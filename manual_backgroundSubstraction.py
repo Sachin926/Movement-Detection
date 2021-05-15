@@ -23,10 +23,12 @@ while (1):
 		frame = cv.GaussianBlur(src = frame, ksize = (5, 5), sigmaX = 0)
 		frame = cv.cvtColor(src = frame, code = cv.COLOR_BGR2GRAY)
 		cv.threshold(src = frame, thresh = 20, maxval = 255, type = cv.THRESH_BINARY)
-
+		count = count + 1
 		diff = cv.absdiff(src1 = frame, src2 = bgImage)
 		cv.imshow("Difference", mat = diff)
-		
+		if (count == 1):
+			bgImage = frame
+			count = 0
 		k = cv.waitKey(1)
 	if (k == 13):
 		break
